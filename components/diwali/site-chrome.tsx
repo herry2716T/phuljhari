@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Volume2, VolumeX } from 'lucide-react'
+import { ArrowDown, Volume2, VolumeX } from 'lucide-react'
 import { partyConfig } from '@/lib/party-config'
 import { BrandMark } from './brand-mark'
 
@@ -84,11 +84,44 @@ export function SiteHeader() {
 
 export function LiquidGlass() {
   return (
-    <div className="liquid-glass" aria-hidden="true">
-      <span className="liquid-glass__highlight" />
-      <span className="liquid-glass__bead liquid-glass__bead--one" />
-      <span className="liquid-glass__bead liquid-glass__bead--two" />
-      <span className="liquid-glass__bead liquid-glass__bead--three" />
-    </div>
+    <a
+      className="liquid-glass"
+      href="#event-details"
+      aria-label="Jump to event details"
+    >
+      <span className="liquid-glass__refraction" aria-hidden="true" />
+      <span className="liquid-glass__highlight" aria-hidden="true" />
+      <span className="liquid-glass__label">event details</span>
+      <span className="liquid-glass__icon" aria-hidden="true">
+        <ArrowDown />
+      </span>
+      <svg className="liquid-glass__filter-defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+          <filter
+            id="liquid-glass-displacement"
+            x="-12%"
+            y="-24%"
+            width="124%"
+            height="148%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.025 0.06"
+              numOctaves="1"
+              seed="8"
+              result="glass-noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="glass-noise"
+              scale="3"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
+    </a>
   )
 }

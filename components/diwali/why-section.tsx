@@ -4,6 +4,7 @@ import Image from 'next/image'
 import type { CSSProperties, KeyboardEvent, PointerEvent } from 'react'
 import { useRef } from 'react'
 import { partyConfig } from '@/lib/party-config'
+import { useScrollReveal } from './use-scroll-reveal'
 
 const cardRotations = [-3.5, 2.3, -1.6, 3.2]
 const pinPositions = ['34%', '56%', '44%', '63%']
@@ -32,6 +33,7 @@ function PaperCard({
   const cardStyle = {
     '--card-rotation': `${rotation}deg`,
     '--pin-offset': pinPositions[index],
+    '--card-delay': `${index * 100}ms`,
   } as CSSProperties
 
   return (
@@ -66,6 +68,7 @@ function PaperCard({
 
 export function WhySection() {
   const trackRef = useRef<HTMLDivElement | null>(null)
+  const { ref, isVisible } = useScrollReveal<HTMLElement>()
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
@@ -79,7 +82,12 @@ export function WhySection() {
   }
 
   return (
-    <section id="why-you-need-it" className="why-section" aria-labelledby="why-heading">
+    <section
+      ref={ref}
+      id="why-you-need-it"
+      className={`why-section${isVisible ? ' is-visible' : ''}`}
+      aria-labelledby="why-heading"
+    >
       <div className="section-heading section-heading--spread">
         <h2 id="why-heading">why you need it</h2>
         <p className="swipe-hint">swipe / scroll sideways</p>

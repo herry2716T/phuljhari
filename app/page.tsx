@@ -1,5 +1,7 @@
 import { EventDetails } from '@/components/diwali/event-details'
+import { SiteFooter, ThemeJoke } from '@/components/diwali/closing-sections'
 import { HeroSection } from '@/components/diwali/hero-section'
+import { LanternTransition } from '@/components/diwali/lantern-transition'
 import { LiquidGlass, SiteHeader } from '@/components/diwali/site-chrome'
 import { StorySections } from '@/components/diwali/story-sections'
 import { WhySection } from '@/components/diwali/why-section'
@@ -10,16 +12,13 @@ export default function Home() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <LanternTransition />
         <WhySection />
         <StorySections />
         <EventDetails />
-        <section id="theme-joke" className="theme-joke" aria-labelledby="theme-joke-heading">
-          <h2 id="theme-joke-heading">boomer choice</h2>
-        </section>
+        <ThemeJoke />
       </main>
-      <footer className="site-footer">
-        <p>ai used yugal to make ts or sm shi</p>
-      </footer>
+      <SiteFooter />
       <LiquidGlass />
     </div>
   )
