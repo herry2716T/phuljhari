@@ -155,10 +155,10 @@ function updateTarget(target: ScrollTarget, rect: DOMRect, viewportWidth: number
     target.range === 'footer'
       ? smoothstep(clamp((viewportHeight - rect.top) / Math.max(rect.height, 1)))
       : smoothstep(clamp((viewportHeight * 1.16 - rect.top) / (viewportHeight * 0.82)))
+  const exitStart = target.range === 'hero' ? viewportHeight * 0.66 : viewportHeight * 0.95
+  const exitTravel = target.range === 'hero' ? viewportHeight * 0.58 : viewportHeight * 0.7
   const exit =
-    target.range === 'footer'
-      ? 0
-      : smoothstep(clamp((viewportHeight * 0.66 - rect.bottom) / (viewportHeight * 0.58)))
+    target.range === 'footer' ? 0 : smoothstep(clamp((exitStart - rect.bottom) / exitTravel))
   const progress = clamp((viewportHeight - rect.top) / (viewportHeight + Math.max(rect.height, 1)))
   const focus = target.range === 'footer' ? enter : Math.min(enter, 1 - exit)
   const metrics: ScrollProgressMetrics = {

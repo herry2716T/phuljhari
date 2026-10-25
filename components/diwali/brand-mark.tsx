@@ -18,6 +18,7 @@ export function BrandMark({ size = 'hero' }: BrandMarkProps) {
           alt="Original Diwali logo"
           fill
           priority={size === 'hero'}
+          loading={size === 'persistent' ? 'eager' : undefined}
           sizes={size === 'hero' ? '(max-width: 640px) 148px, 188px' : '66px'}
           className="brand-mark__image"
         />

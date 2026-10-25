@@ -1970,9 +1970,9 @@ a:focus-visible,
   }
 
   .lantern-transition__lantern {
-    opacity: min(var(--lantern-opacity), 0.46);
-    filter: none;
-    transform: translate3d(-50%, -50%, 0) rotate(var(--lantern-rotation)) scale(var(--lantern-scale));
+    opacity: min(var(--lantern-opacity), 0.46) !important;
+    filter: none !important;
+    transform: translate3d(-50%, -50%, 0) rotate(var(--lantern-rotation)) scale(var(--lantern-scale)) !important;
   }
 
   .lantern-transition__why-preview {
@@ -2012,6 +2012,17 @@ a:focus-visible,
 .hero-stage {
   opacity: var(--scroll-opacity, 1);
   transform: translate3d(0, var(--scroll-content-y, 0px), 0);
+}
+
+.hero-section.scroll-linked-section .hero-invite {
+  transform: scale(var(--scroll-art-scale, 1));
+  transition: none;
+}
+
+.hero-section.scroll-linked-section .hero-invite h1 {
+  transform: scale(var(--scroll-heading-scale, 1));
+  filter: blur(var(--scroll-blur, 0px));
+  transition: none;
 }
 
 .hero-section.scroll-linked-section .hero-lantern {
