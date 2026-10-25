@@ -1,5 +1,6 @@
 export type PartyConfig = {
   logoSrc: string | null
+  heroLogoSrc: string | null
   soundSrc: string | null
   heroBackdropSrc: string
   reasons: Array<{
@@ -29,7 +30,8 @@ export type PartyConfig = {
 }
 
 export const partyConfig: PartyConfig = {
-  logoSrc: '/images/diwali-logo.jpeg',
+  logoSrc: '/images/diwali-logo-background.png',
+  heroLogoSrc: '/images/diwali-logo-transparent.png',
   soundSrc: null,
   heroBackdropSrc: '/images/hero-festive-atmosphere.png',
   reasons: [

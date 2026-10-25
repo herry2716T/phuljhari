@@ -6,15 +6,19 @@ type BrandMarkProps = {
 }
 
 export function BrandMark({ size = 'hero' }: BrandMarkProps) {
-  const accessibleName = partyConfig.logoSrc
+  const logoSrc =
+    size === 'hero'
+      ? partyConfig.heroLogoSrc ?? partyConfig.logoSrc
+      : partyConfig.logoSrc
+  const accessibleName = logoSrc
     ? 'Original Diwali logo'
     : 'Original Diwali logo asset not attached'
 
   return (
-    <div className={`brand-mark brand-mark--${size}${partyConfig.logoSrc ? ' brand-mark--image' : ''}`}>
-      {partyConfig.logoSrc ? (
+    <div className={`brand-mark brand-mark--${size}${logoSrc ? ' brand-mark--image' : ''}`}>
+      {logoSrc ? (
         <Image
-          src={partyConfig.logoSrc}
+          src={logoSrc}
           alt="Original Diwali logo"
           fill
           priority={size === 'hero'}
