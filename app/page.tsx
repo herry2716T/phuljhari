@@ -1,16 +1,26 @@
+import { EventDetails } from '@/components/diwali/event-details'
+import { HeroSection } from '@/components/diwali/hero-section'
+import { LiquidGlass, SiteHeader } from '@/components/diwali/site-chrome'
+import { StorySections } from '@/components/diwali/story-sections'
+import { WhySection } from '@/components/diwali/why-section'
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans">
-      <main className="flex w-full max-w-3xl flex-col items-center gap-8 px-6 py-16 text-center sm:items-start sm:text-left">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold tracking-tight">
-            diwali invite
-          </h1>
-          <p className="max-w-md text-lg text-muted-foreground">
-            To get started, send a prompt or modify this page directly.
-          </p>
-        </div>
+    <div className="invitation-site">
+      <SiteHeader />
+      <main>
+        <HeroSection />
+        <WhySection />
+        <StorySections />
+        <EventDetails />
+        <section id="theme-joke" className="theme-joke" aria-labelledby="theme-joke-heading">
+          <h2 id="theme-joke-heading">boomer choice</h2>
+        </section>
       </main>
+      <footer className="site-footer">
+        <p>ai used yugal to make ts or sm shi</p>
+      </footer>
+      <LiquidGlass />
     </div>
-  );
+  )
 }
