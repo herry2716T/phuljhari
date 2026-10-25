@@ -280,6 +280,17 @@ a:focus-visible,
   pointer-events: none;
 }
 
+.hero-section::after {
+  position: absolute;
+  z-index: 0;
+  inset-inline: 0;
+  bottom: 0;
+  height: clamp(160px, 24svh, 270px);
+  background: linear-gradient(180deg, transparent 0%, rgb(16 11 14 / 68%) 58%, #100b0e 100%);
+  content: '';
+  pointer-events: none;
+}
+
 .hero-grain {
   position: absolute;
   z-index: -1;
@@ -502,7 +513,7 @@ a:focus-visible,
 .why-section {
   position: relative;
   padding: clamp(84px, 11vw, 154px) 0 clamp(96px, 12vw, 168px);
-  background: linear-gradient(180deg, #100b0e 0%, #171014 54%, #130d11 100%);
+  background: linear-gradient(180deg, #100b0e 0%, #171014 54%, #24151a 100%);
 }
 
 .section-heading {
@@ -720,14 +731,24 @@ a:focus-visible,
   text-align: center;
 }
 
+.venue-teaser::before,
 .venue-teaser::after {
   position: absolute;
+  z-index: 0;
   inset-inline: 0;
-  bottom: 0;
-  height: 18%;
-  background: linear-gradient(180deg, transparent, #120b0e);
+  height: clamp(140px, 22svh, 250px);
   content: '';
   pointer-events: none;
+}
+
+.venue-teaser::before {
+  top: 0;
+  background: linear-gradient(180deg, #24151a 0%, transparent 100%);
+}
+
+.venue-teaser::after {
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, #1b1117 100%);
 }
 
 .venue-teaser__copy {
@@ -770,7 +791,7 @@ a:focus-visible,
 
 .story-scenes {
   position: relative;
-  background: #120b0f;
+  background: #1b1117;
 }
 
 .story-scene {
@@ -781,18 +802,24 @@ a:focus-visible,
   overflow: hidden;
   padding: clamp(88px, 11vw, 156px) clamp(20px, 6vw, 94px);
   background:
+    linear-gradient(180deg, #1b1117 0%, transparent 26%),
+    linear-gradient(0deg, #181018 0%, transparent 26%),
     radial-gradient(ellipse at 78% 50%, rgb(117 62 49 / 22%), transparent 50%),
     linear-gradient(142deg, #1a1017, #0e0a0d 75%);
 }
 
 .story-scene--games {
   background:
+    linear-gradient(180deg, #181018 0%, transparent 26%),
+    linear-gradient(0deg, #211418 0%, transparent 26%),
     radial-gradient(ellipse at 18% 46%, rgb(139 89 74 / 17%), transparent 50%),
     linear-gradient(145deg, #100b0f, #1b1118 70%, #130d11);
 }
 
 .story-scene--food-drinks {
   background:
+    linear-gradient(180deg, #211418 0%, transparent 26%),
+    linear-gradient(0deg, #1a1015 0%, transparent 26%),
     radial-gradient(ellipse at 76% 50%, rgb(166 111 70 / 15%), transparent 52%),
     linear-gradient(135deg, #1a1112, #100a0d 68%, #0c080b);
 }
@@ -956,7 +983,10 @@ a:focus-visible,
   min-height: min(82svh, 870px);
   place-items: center;
   padding: 120px 24px;
-  background: #060506;
+  background:
+    linear-gradient(180deg, #1a1015 0%, transparent 28%),
+    linear-gradient(0deg, #21131a 0%, transparent 28%),
+    #060506;
   text-align: center;
 }
 
@@ -1002,7 +1032,7 @@ a:focus-visible,
 .event-details {
   position: relative;
   padding: clamp(98px, 12vw, 170px) clamp(22px, 7vw, 110px) clamp(110px, 13vw, 180px);
-  background: linear-gradient(180deg, #100a0d, #171014 42%, #0e090c);
+  background: linear-gradient(180deg, #21131a, #171014 42%, #0e090c);
 }
 
 .event-details__intro,
@@ -1169,7 +1199,7 @@ a:focus-visible,
   min-height: min(66svh, 700px);
   place-items: center;
   padding: 100px 20px;
-  background: #090709;
+  background: linear-gradient(180deg, #0e090c 0%, #090709 54%, #090709 100%);
   text-align: center;
 }
 
