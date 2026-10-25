@@ -98,12 +98,13 @@ export function LanternTransition() {
         const viewportWidth = window.innerWidth
         const viewportHeight = window.innerHeight
         const backgroundProgress = smoothstep(clamp((progress - 0.34) / 0.66))
-        const headingProgress = smoothstep(clamp((progress - 0.79) / 0.21))
+        const headingProgress = smoothstep(clamp((progress - 0.72) / 0.26))
+        const previewExit = smoothstep(clamp((progress - 0.9) / 0.1))
         const ambientProgress = Math.sin(Math.PI * progress)
 
         scene.style.setProperty('--transition-progress', String(progress))
         scene.style.setProperty('--why-background-opacity', String(backgroundProgress))
-        scene.style.setProperty('--why-intro-opacity', String(headingProgress))
+        scene.style.setProperty('--why-intro-opacity', String(headingProgress * (1 - previewExit)))
         scene.style.setProperty('--why-intro-y', `${(1 - headingProgress) * 26}px`)
         scene.style.setProperty('--why-intro-blur', `${(1 - headingProgress) * 6}px`)
         scene.style.setProperty('--why-intro-scale', String(1.08 - headingProgress * 0.08))

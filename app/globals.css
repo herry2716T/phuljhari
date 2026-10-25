@@ -1563,7 +1563,7 @@ a:focus-visible,
   opacity: 0.9;
   text-decoration: none;
   transform: translateX(-50%);
-  transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease, transform 220ms ease;
+  transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease, transform 220ms ease, visibility 0s linear;
   pointer-events: auto;
   isolation: isolate;
   backdrop-filter: blur(13px) saturate(155%);
@@ -1645,6 +1645,14 @@ a:focus-visible,
 
 .liquid-glass:active {
   transform: translate(-50%, 0) scale(0.98);
+}
+
+.liquid-glass.liquid-glass--occluded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition-delay: 0ms, 0ms, 0ms, 0ms, 0ms, 220ms;
 }
 
 .liquid-glass__filter-defs {

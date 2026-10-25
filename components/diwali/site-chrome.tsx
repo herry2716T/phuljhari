@@ -83,8 +83,54 @@ export function SiteHeader() {
 }
 
 export function LiquidGlass() {
+  const glassRef = useRef<HTMLAnchorElement | null>(null)
+
+  useEffect(() => {
+    const glass = glassRef.current
+    const heading = document.getElementById('why-heading')?.closest('.section-heading')
+
+    if (!glass || !heading) return
+
+    let animationFrame = 0
+
+    const updateOverlap = () => {
+      if (animationFrame) return
+
+      animationFrame = window.requestAnimationFrame(() => {
+        animationFrame = 0
+        const glassBounds = glass.getBoundingClientRect()
+        const headingBounds = heading.getBoundingClientRect()
+        const overlaps =
+          headingBounds.bottom > glassBounds.top - 6 &&
+          headingBounds.top < glassBounds.bottom + 6 &&
+          headingBounds.right > glassBounds.left - 8 &&
+          headingBounds.left < glassBounds.right + 8
+
+        glass.classList.toggle(
+          'liquid-glass--occluded',
+          overlaps && document.activeElement !== glass,
+        )
+      })
+    }
+
+    updateOverlap()
+    window.addEventListener('scroll', updateOverlap, { passive: true })
+    window.addEventListener('resize', updateOverlap)
+    document.addEventListener('focusin', updateOverlap)
+    document.addEventListener('focusout', updateOverlap)
+
+    return () => {
+      window.removeEventListener('scroll', updateOverlap)
+      window.removeEventListener('resize', updateOverlap)
+      document.removeEventListener('focusin', updateOverlap)
+      document.removeEventListener('focusout', updateOverlap)
+      if (animationFrame) window.cancelAnimationFrame(animationFrame)
+    }
+  }, [])
+
   return (
     <a
+      ref={glassRef}
       className="liquid-glass"
       href="#event-details"
       aria-label="Jump to event details"
