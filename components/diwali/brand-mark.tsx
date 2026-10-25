@@ -11,14 +11,14 @@ export function BrandMark({ size = 'hero' }: BrandMarkProps) {
     : 'Original Diwali logo asset not attached'
 
   return (
-    <div className={`brand-mark brand-mark--${size}`}>
+    <div className={`brand-mark brand-mark--${size}${partyConfig.logoSrc ? ' brand-mark--image' : ''}`}>
       {partyConfig.logoSrc ? (
         <Image
           src={partyConfig.logoSrc}
           alt="Original Diwali logo"
           fill
           priority={size === 'hero'}
-          sizes={size === 'hero' ? '(max-width: 640px) 150px, 210px' : '84px'}
+          sizes={size === 'hero' ? '(max-width: 640px) 148px, 188px' : '66px'}
           className="brand-mark__image"
         />
       ) : (

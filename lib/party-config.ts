@@ -29,7 +29,7 @@ export type PartyConfig = {
 }
 
 export const partyConfig: PartyConfig = {
-  logoSrc: null,
+  logoSrc: '/images/diwali-logo.jpeg',
   soundSrc: null,
   heroBackdropSrc: '/images/hero-festive-atmosphere.png',
   reasons: [

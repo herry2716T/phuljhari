@@ -1,21 +1,20 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
 import type { PointerEvent } from 'react'
-import { useScrollReveal } from './use-scroll-reveal'
+import { useScrollProgress } from './use-scroll-progress'
 import { partyConfig } from '@/lib/party-config'
 
 type StoryScene = (typeof partyConfig.scenes)[number]
 
 function VenueTeaser() {
-  const { ref, isVisible } = useScrollReveal<HTMLElement>()
+  const ref = useScrollProgress<HTMLElement>()
 
   return (
     <section
       ref={ref}
       id="venue-teaser"
-      className={`venue-teaser${isVisible ? ' is-visible' : ''}`}
+      className="venue-teaser scroll-linked-section"
       aria-labelledby="venue-teaser-heading"
     >
       <div className="venue-teaser__copy">
@@ -28,57 +27,7 @@ function VenueTeaser() {
 }
 
 function StoryScene({ scene }: { scene: StoryScene }) {
-  const { ref, isVisible } = useScrollReveal<HTMLElement>()
-  const artRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    const section = ref.current
-    const artwork = artRef.current
-
-    if (scene.id !== 'games' || !section || !artwork) return
-
-    const setGameProgress = (progress: number) => {
-      artwork.style.setProperty('--game-die-x', `${(progress - 0.5) * 34}px`)
-      artwork.style.setProperty('--game-die-y', `${(0.5 - progress) * 28}px`)
-      artwork.style.setProperty('--game-die-rotate', `${(progress - 0.5) * 14}deg`)
-      artwork.style.setProperty('--game-card-y', `${(progress - 0.5) * 40}px`)
-      artwork.style.setProperty('--game-card-rotate', `${(0.5 - progress) * 18}deg`)
-      artwork.style.setProperty('--game-token-x', `${(0.5 - progress) * 30}px`)
-      artwork.style.setProperty('--game-token-y', `${(progress - 0.5) * 18}px`)
-    }
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setGameProgress(0.5)
-      return
-    }
-
-    let frame = 0
-
-    const updateProgress = () => {
-      if (frame) return
-
-      frame = window.requestAnimationFrame(() => {
-        const bounds = section.getBoundingClientRect()
-        const progress = Math.min(
-          1,
-          Math.max(0, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)),
-        )
-        setGameProgress(progress)
-        frame = 0
-      })
-    }
-
-    updateProgress()
-    window.addEventListener('scroll', updateProgress, { passive: true })
-    window.addEventListener('resize', updateProgress)
-
-    return () => {
-      window.removeEventListener('scroll', updateProgress)
-      window.removeEventListener('resize', updateProgress)
-      if (frame) window.cancelAnimationFrame(frame)
-    }
-  }, [ref, scene.id])
-
+  const ref = useScrollProgress<HTMLElement>()
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect()
     const x = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width))
@@ -99,7 +48,7 @@ function StoryScene({ scene }: { scene: StoryScene }) {
   return (
     <section
       ref={ref}
-      className={`story-scene story-scene--${scene.id}${isVisible ? ' is-visible' : ''}`}
+      className={`story-scene story-scene--${scene.id} scroll-linked-section`}
       aria-labelledby={`scene-heading-${scene.id}`}
     >
       <div className="story-scene__inner">
@@ -108,8 +57,7 @@ function StoryScene({ scene }: { scene: StoryScene }) {
           <p>{scene.tagline}</p>
         </div>
         <figure
-          ref={artRef}
-          className="story-scene__art"
+      className="story-scene__art"
           onPointerMove={scene.id === 'food-drinks' ? undefined : handlePointerMove}
           onPointerLeave={scene.id === 'food-drinks' ? undefined : resetPointer}
           onPointerUp={scene.id === 'food-drinks' ? undefined : resetPointer}
@@ -145,13 +93,13 @@ function WhatWillBeThere() {
 }
 
 function AttentionMilestone() {
-  const { ref, isVisible } = useScrollReveal<HTMLElement>()
+  const ref = useScrollProgress<HTMLElement>()
 
   return (
     <section
       ref={ref}
       id="attention-milestone"
-      className={`attention-milestone${isVisible ? ' is-visible' : ''}`}
+      className="attention-milestone scroll-linked-section"
       aria-label="Attention-span milestone"
     >
       <div className="attention-milestone__copy">

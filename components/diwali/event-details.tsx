@@ -1,7 +1,7 @@
 'use client'
 
 import { partyConfig } from '@/lib/party-config'
-import { useScrollReveal } from './use-scroll-reveal'
+import { useScrollProgress } from './use-scroll-progress'
 
 const detailRows = [
   ['venue name', partyConfig.event.venueName],
@@ -12,7 +12,7 @@ const detailRows = [
 ] as const
 
 export function EventDetails() {
-  const { ref, isVisible } = useScrollReveal<HTMLElement>()
+  const ref = useScrollProgress<HTMLElement>()
   const directionsUrl = partyConfig.destinations.directionsUrl
   const whatsappRsvpUrl = partyConfig.destinations.whatsappRsvpUrl
 
@@ -20,7 +20,7 @@ export function EventDetails() {
     <section
       ref={ref}
       id="event-details"
-      className={`event-details${isVisible ? ' is-visible' : ''}`}
+      className="event-details scroll-linked-section"
       aria-labelledby="event-details-heading"
     >
       <div className="event-details__intro">

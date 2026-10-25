@@ -1,15 +1,15 @@
 'use client'
 
-import { useScrollReveal } from './use-scroll-reveal'
+import { useScrollProgress } from './use-scroll-progress'
 
 export function ThemeJoke() {
-  const { ref, isVisible } = useScrollReveal<HTMLElement>()
+  const ref = useScrollProgress<HTMLElement>()
 
   return (
     <section
       ref={ref}
       id="theme-joke"
-      className={`theme-joke${isVisible ? ' is-visible' : ''}`}
+      className="theme-joke scroll-linked-section"
       aria-labelledby="theme-joke-heading"
     >
       <h2 id="theme-joke-heading">boomer choice</h2>
@@ -18,10 +18,10 @@ export function ThemeJoke() {
 }
 
 export function SiteFooter() {
-  const { ref, isVisible } = useScrollReveal<HTMLElement>()
+  const ref = useScrollProgress<HTMLElement>({ range: 'footer' })
 
   return (
-    <footer ref={ref} className={`site-footer${isVisible ? ' is-visible' : ''}`}>
+    <footer ref={ref} className="site-footer scroll-linked-section">
       <p>ai used yugal to make ts or sm shi</p>
     </footer>
   )

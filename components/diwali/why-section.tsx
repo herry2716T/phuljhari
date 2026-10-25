@@ -4,7 +4,7 @@ import Image from 'next/image'
 import type { CSSProperties, KeyboardEvent, PointerEvent } from 'react'
 import { useRef } from 'react'
 import { partyConfig } from '@/lib/party-config'
-import { useScrollReveal } from './use-scroll-reveal'
+import { useScrollProgress } from './use-scroll-progress'
 
 const cardRotations = [-3.5, 2.3, -1.6, 3.2]
 const pinPositions = ['34%', '56%', '44%', '63%']
@@ -68,7 +68,7 @@ function PaperCard({
 
 export function WhySection() {
   const trackRef = useRef<HTMLDivElement | null>(null)
-  const { ref, isVisible } = useScrollReveal<HTMLElement>()
+  const ref = useScrollProgress<HTMLElement>()
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
@@ -85,7 +85,7 @@ export function WhySection() {
     <section
       ref={ref}
       id="why-you-need-it"
-      className={`why-section${isVisible ? ' is-visible' : ''}`}
+      className="why-section scroll-linked-section"
       aria-labelledby="why-heading"
     >
       <div className="section-heading section-heading--spread">
